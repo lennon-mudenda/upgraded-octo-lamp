@@ -132,7 +132,15 @@ final class ShopStore {
     }
 
     func remove(_ line: CartLine) {
-        cart.removeAll()
+        var newCart:[CartLine] = []
+        
+        for item in cart {
+            if item.id != line.id {
+                newCart.append(item)
+            }
+        }
+        
+        cart = newCart
     }
 
     func placeOrder(customer: Customer, delivery: DeliveryMethod, payment: PaymentMethod) -> Bool {
